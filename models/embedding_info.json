@@ -1,0 +1,7 @@
+{
+  "embedding_model": "sbert",
+  "total_chunks": 32,
+  "total_documents": 0,
+  "chroma_persist_dir": "models/chroma_db",
+  "processed_at": "2025-08-07T19:21:07"
+}

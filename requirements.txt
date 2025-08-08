@@ -1,0 +1,40 @@
+# Core data processing
+pandas>=2.0.0
+numpy>=1.21.0
+openpyxl>=3.0.0
+python-docx>=0.8.0
+PyPDF2>=3.0.0
+
+# Flask backend
+flask>=2.3.0
+flask-cors>=4.0.0
+werkzeug>=2.3.0
+
+# Machine learning and forecasting
+scikit-learn>=1.0.0
+matplotlib>=3.5.0
+seaborn>=0.11.0
+plotly>=5.0.0
+
+# Web UI
+streamlit>=1.25.0
+gradio>=4.0.0
+
+# Mistral AI integration
+transformers>=4.30.0
+torch>=2.0.0
+accelerate>=0.20.0
+bitsandbytes>=0.41.0
+
+# Encoding detection
+chardet>=5.2.0
+
+# Vector embeddings and storage (for legacy components)
+sentence-transformers>=2.2.0
+chromadb>=0.4.0
+chroma-hnswlib>=0.7.0
+
+# Utilities
+python-dotenv>=1.0.0
+tqdm>=4.60.0
+requests>=2.25.0 
