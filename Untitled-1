@@ -1,0 +1,17 @@
+app/
+├── backend/
+│   ├── main.py
+│   ├── services/
+│   │   ├── forecast.py
+│   │   └── chatbot.py
+│   ├── embeddings/
+│   │   └── embed.py
+│   ├── rag/
+│   │   └── retrieval.py
+│   └── __init__.py
+├── frontend/
+│   └── ui/
+│       └── streamlit_app.py
+├── .env.example
+├── requirements.txt
+└── README.md
