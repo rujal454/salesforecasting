@@ -38,16 +38,44 @@ if uploaded2 and st.button("Forecast"):
             st.write("Raw response:", resp_json)
     except Exception as e:
         st.error(f"Forecast failed: {e}")
-        st.write("Raw response:", getattr(r, "text", ""))
+        try:
+            st.write("Raw response:", getattr(r, "text", ""))
+        except:
+            st.write("No response available")
 
 st.header("RAG Chatbot")
 query = st.text_input("Ask a question about your sales data:")
 if st.button("Ask"):
-    try:
-        r = requests.post(f"{API_BASE}/chat", data={"query": query})
-        r.raise_for_status()
-        resp_json = r.json()
-        st.write(resp_json.get("answer", "No answer returned."))
-    except Exception as e:
-        st.error(f"Chat failed: {e}")
-        st.write("Raw response:", getattr(r, "text", ""))
+    if query.strip():
+        with st.spinner("🤖 AI is thinking..."):
+            try:
+                r = requests.post(f"{API_BASE}/chat", data={"query": query})
+                r.raise_for_status()
+                resp_json = r.json()
+
+                if "answer" in resp_json and resp_json["answer"]:
+                    st.success("✅ AI Response:")
+                    st.write(resp_json["answer"])
+
+                    # Show additional info if available
+                    if "model" in resp_json:
+                        st.info(f"Model: {resp_json['model']}")
+                    if "tokens_used" in resp_json:
+                        st.info(f"Tokens used: {resp_json['tokens_used']}")
+
+                elif "error" in resp_json:
+                    st.error(f"❌ Error: {resp_json['error']}")
+                    if "raw_response" in resp_json:
+                        st.write("Raw response:", resp_json["raw_response"])
+                else:
+                    st.warning("⚠️ No answer returned from AI")
+                    st.write("Full response:", resp_json)
+
+            except Exception as e:
+                st.error(f"❌ Chat failed: {e}")
+                try:
+                    st.write("Raw response:", r.text if 'r' in locals() else "No response")
+                except:
+                    st.write("No response available")
+    else:
+        st.warning("Please enter a question.")

@@ -1,6 +1,6 @@
 import os
 import requests
-from app.backend.rag import retrieval
+from ..rag import retrieval
 
 OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY")
 MISTRAL_MODEL = os.getenv("MISTRAL_MODEL", "mistralai/mistral-7b-instruct")
